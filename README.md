@@ -13,11 +13,13 @@ The original data sets and explanations are included in the folder "UCI HAR Data
 
 See more details about the original data set in "UCI HAR Dataset/README.txt"
 
-$\frac{1}{2}$
 
 ## The function that the R script realizes
 
-The script "run_analysis_R.R" picks out all the average values and standard deviations of the measured quantities, organizing them into a single tidy data frame and export the data frame into "Tidy_Data.txt". 
+The script "run_analysis_R.R" picks out from the original data set, all the average values and standard deviations, organizing them into a single tidy data frame and exporting the tidy data frame into "Tidy_Data.txt". 
 
-The tidy data frame also contains variables indicating the index of the subject of the experiment (variable "Subject") as well as the action he/she is required to perform (variable "Action").
+The generated tidy data frame also contains variables indicating the index of the subject of the experiment (variable "Subject") as well as the action he/she is required to perform (variable "Action").
 
+## Variables in the data frame
+
+See "CodeBook.md"
