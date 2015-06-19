@@ -4,36 +4,48 @@ library(dplyr)
 features <- read.table("UCI HAR Dataset/features.txt")
 activities <- read.table("UCI HAR Dataset/activity_labels.txt")
 
-grp_mean <- grep("mean\\(\\)",as.character(features$V2))
-grp_std  <- grep("std\\(\\)",as.character(features$V2))
+grp_mean <- grep("mean\\(\\)",as.character(features$V2)) 
+# get the indices of mean values stored in vector grp_mean
 
-grpMS <- c(grp_mean,grp_std)
-grpMSMS <- vector(mode="numeric",length=2*length(grp_mean))
-for(k in 1:length(grp_mean)) {grpMSMS[2*k-1] <- grp_mean[k]; grpMSMS[2*k] <- grp_std[k]}
+grp_std  <- grep("std\\(\\)",as.character(features$V2)) 
+# get the indices of standard deviations stored in vector grp_std
 
-name_vec <- c("Subject","Action",as.character(features$V2[grpMSMS]))
+grp_mean_std <- vector(mode="numeric",length=2*length(grp_mean)) 
+for(k in 1:length(grp_mean)) {grp_mean_std[2*k-1] <- grp_mean[k]; grp_mean_std[2*k] <- grp_std[k]}
+# combine grp_mean and grp_std to grp_mean_std
+# such that each mean value is followed by the std of the same quantity observed
 
+name_vec <- c("Subject","Action",as.character(features$V2[grp_mean_std]))
+# convert the vector of feature indices grp_mean_std 
+# into a vector of descriptive feature names name_vec
 
-## following six lines work on the test data set
-Xtest <- read.table("UCI HAR Dataset/test/X_test.txt")
+## Below: reading and subsetting the test data set
+
+Xtest <- read.table("UCI HAR Dataset/test/X_test.txt") 
 Ytest <- read.table("UCI HAR Dataset/test/y_test.txt")
 Subj_test <- read.table("UCI HAR Dataset/test/subject_test.txt")
-Select_Test <- cbind(Subj_test$V1,activities$V2[Ytest$V1],Xtest[,grpMSMS])
+Select_Test <- cbind(Subj_test$V1,activities$V2[Ytest$V1],Xtest[,grp_mean_std]) 
+# pick out only the columns of means and stds and store them in Select_Test
 names(Select_Test) <- name_vec
-rm(Xtest) #release memory
+# assign variable names to the data frame
+rm(Xtest) 
+#release memory
 
-# following six lines work on the training data set
+## Below: reading and subsetting the train data set the same way as for test data set
+
 Xtrain <- read.table("UCI HAR Dataset/train/X_train.txt")
 Ytrain <- read.table("UCI HAR Dataset/train/y_train.txt")
 Subj_train <- read.table("UCI HAR Dataset/train/subject_train.txt")
-Select_Train <- cbind(Subj_train$V1,activities$V2[Ytrain$V1],Xtrain[,grpMSMS])
+Select_Train <- cbind(Subj_train$V1,activities$V2[Ytrain$V1],Xtrain[,grp_mean_std])
 names(Select_Train) <- name_vec
 rm(Xtrain) #release memory
 
-## row-binding together the testing and the training data frames and then export to txt
-Tidy_Data <- rbind(Select_Test,Select_Train)
+## Below: merging the test and the train data frames 
+Tidy_Data <- rbind(Select_Test,Select_Train) 
 rm(Select_Test,Select_Train) #release memory
-write.table(Tidy_Data,file="Tidy_Data.txt",row.names = FALSE) 
+
+## Below: export merged tidy data frame to a txt file
+write.table(Tidy_Data,file="Tidy_Data.txt",row.names = FALSE) #export
 
 
 
