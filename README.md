@@ -13,6 +13,8 @@ The original data sets and explanations are included in the folder "UCI HAR Data
 
 See more details about the original data set in "UCI HAR Dataset/README.txt"
 
+$\frac{1}{2}$
+
 ## The function that the R script realizes
 
 The script "run_analysis_R.R" picks out all the average values and standard deviations of the measured quantities, organizing them into a single tidy data frame and export the data frame into "Tidy_Data.txt". 
