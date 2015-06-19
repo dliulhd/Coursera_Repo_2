@@ -32,7 +32,7 @@ names(Select_Train) <- name_vec
 
 # row-binding together the testing and the training data frames and then export to txt
 Tidy_Data <- rbind(Select_Test,Select_Train)
-write.table(Tidy_Data,file="Tidy_Data.txt")
+write.table(Tidy_Data,file="Tidy_Data.txt",row.names = FALSE) 
 
 
 
