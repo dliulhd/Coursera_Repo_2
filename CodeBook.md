@@ -1,8 +1,14 @@
 
+## The function that the R script realizes
+
+The script "run_analysis_R.R" picks out from the original data set, all the average values and standard deviations, organizing them into a single tidy data frame and exporting the tidy data frame into "Tidy_Data.txt". 
+
+The generated tidy data frame also contains variables indicating the index of the subject of the experiment (variable "Subject") as well as the action he/she is required to perform (variable "Action").
 
 
 
 
+## Details of the tidy data variables
 
 The variables in the tidy data frame are as follows, where "1 Subject" is the person being asked to perform the action; "2 Action" is the action they perform, and from 3 to 68 are the mean values and standard deviations of the quantities measured by the Samsung Galaxy S II smartphone
 
