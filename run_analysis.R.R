@@ -5,15 +5,17 @@ features <- read.table("UCI HAR Dataset/features.txt")
 activities <- read.table("UCI HAR Dataset/activity_labels.txt")
 
 grp_mean <- grep("mean\\(\\)",as.character(features$V2)) 
-# get the indices of mean values stored in vector grp_mean
+# get the indices of mean values 
+# result stored in vector grp_mean
 
 grp_std  <- grep("std\\(\\)",as.character(features$V2)) 
-# get the indices of standard deviations stored in vector grp_std
+# get the indices of standard deviations 
+# result stored in vector grp_std
 
 grp_mean_std <- vector(mode="numeric",length=2*length(grp_mean)) 
 for(k in 1:length(grp_mean)) {grp_mean_std[2*k-1] <- grp_mean[k]; grp_mean_std[2*k] <- grp_std[k]}
 # combine grp_mean and grp_std to grp_mean_std
-# such that each mean value is followed by the std of the same quantity observed
+# a mean value is immediately followed by the std of the same quantity
 
 name_vec <- c("Subject","Action",as.character(features$V2[grp_mean_std]))
 # convert the vector of feature indices grp_mean_std 
@@ -25,7 +27,10 @@ Xtest <- read.table("UCI HAR Dataset/test/X_test.txt")
 Ytest <- read.table("UCI HAR Dataset/test/y_test.txt")
 Subj_test <- read.table("UCI HAR Dataset/test/subject_test.txt")
 Select_Test <- cbind(Subj_test$V1,activities$V2[Ytest$V1],Xtest[,grp_mean_std]) 
-# pick out only the columns of means and stds and store them in Select_Test
+# the line above makes a new dataframe Select_Test
+# first column specifying the subjects of the experiment
+# second column specifying the action that the subjects performed
+# the rest of the columns are the means and stds 
 names(Select_Test) <- name_vec
 # assign variable names to the data frame
 rm(Xtest) 
