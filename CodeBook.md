@@ -1,7 +1,7 @@
 
 ## The function that "run_analysis_R.R" realizes
 
-The script "run_analysis_R.R" picks out from the original data set, all the average values and standard deviations, organizing them into a single tidy data frame and exporting the tidy data frame into "Tidy_Data.txt". 
+The script "run_analysis_R.R" picks out from the original data set "UCI HAR Dataset/test/X_test.txt" and "UCI HAR Dataset/test/X_train.txt", all the average values and standard deviations, organizing them into a single tidy data frame and exporting the tidy data frame into "Tidy_Data.txt". 
 
 The generated tidy data frame also contains variables indicating the index of the subject of the experiment (variable "Subject") as well as the action he/she is required to perform (variable "Action").
 
