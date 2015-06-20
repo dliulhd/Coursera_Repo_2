@@ -1,5 +1,5 @@
 
-## The function that the R script realizes
+## The function that the "run_analysis_R.R" realizes
 
 The script "run_analysis_R.R" picks out from the original data set, all the average values and standard deviations, organizing them into a single tidy data frame and exporting the tidy data frame into "Tidy_Data.txt". 
 
