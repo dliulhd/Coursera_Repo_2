@@ -1,7 +1,6 @@
 # Course Project of Getting and Cleaning Data
 
 
-## About the original data set
 
 This R script "run_analysis_R.R" tidies the dataset obtained in human activity recognition experiment, measured by smartphones (Samsung Galaxy S II). 
 
